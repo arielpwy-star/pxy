@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>贪吃蛇小游戏</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <h1>贪吃蛇（Windows 网页版）</h1>
+      <p class="hint">按下 Start 开始，使用方向键控制小蛇吃彩色小球，躲开围墙！</p>
+      <section class="toolbar">
+        <button id="startBtn" type="button">Start</button>
+        <button id="restartBtn" type="button" disabled>Restart</button>
+        <div class="status">
+          <span>得分：<strong id="score">0</strong></span>
+          <span>速度：<strong id="speed">1x</strong></span>
+        </div>
+      </section>
+      <canvas id="gameCanvas" width="720" height="520" aria-label="贪吃蛇游戏画布"></canvas>
+      <p id="message" class="message">准备就绪，点击 Start 开始游戏。</p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
