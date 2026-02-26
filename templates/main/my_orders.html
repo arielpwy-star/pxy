@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}我的订单{% endblock %}
+{% block content %}
+<h2>我的历史订单</h2>
+{% for order in orders %}
+<div class="card mb-3 shadow-sm">
+    <div class="card-header d-flex justify-content-between">
+        <span>订单号 #{{ order.id }}</span>
+        <span class="badge bg-{{ 'success' if order.status == '已完成' else 'warning text-dark' }}">{{ order.status }}</span>
+    </div>
+    <div class="card-body">
+        <ul class="mb-2">
+            {% for item in order.items %}
+                <li>{{ item.product.name }} x {{ item.quantity }}（￥{{ '%.2f'|format(item.unit_price) }}）</li>
+            {% endfor %}
+        </ul>
+        <strong>总金额：￥{{ '%.2f'|format(order.total_amount) }}</strong>
+    </div>
+</div>
+{% else %}
+<p>暂无订单记录。</p>
+{% endfor %}
+{% endblock %}
