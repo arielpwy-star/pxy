@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}购物车{% endblock %}
+{% block content %}
+<h2>购物车</h2>
+{% if items %}
+<table class="table table-bordered bg-white">
+    <thead>
+        <tr>
+            <th>菜品</th><th>单价</th><th>数量</th><th>小计</th><th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>￥{{ '%.2f'|format(item.product.price) }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>￥{{ '%.2f'|format(item.subtotal) }}</td>
+            <td><a class="btn btn-sm btn-outline-danger" href="{{ url_for('main.remove_from_cart', product_id=item.product.id) }}">删除</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<h4>总计：<span class="text-danger">￥{{ '%.2f'|format(total) }}</span></h4>
+<form method="post" action="{{ url_for('main.submit_order') }}">
+    <button class="btn btn-primary">提交订单</button>
+</form>
+{% else %}
+<p>购物车为空。</p>
+{% endif %}
+{% endblock %}
